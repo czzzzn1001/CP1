@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View, Button,Image,TextInput } from 'react-native';
 import { event } from 'react-native-reanimated';
+import JobApplications from './components/JobApplications';
 
 const coding_url="https://blog.acromedia.com/hubfs/Blog%20Images/%28Acro%20Blog%29%20Coding%20Standards%20and%20Development%20-%201.0%20-%20mh.jpg"
 const mind_url='https://www.thecoderschool.com/blog/wp-content/uploads/2019/01/CodingMakesYouSmarter.jpg'
@@ -156,7 +157,11 @@ const ApplicationScreen = ({ navigation, route,url }) => {
           {route.params.greeting}, this is {route.params.name}'s applications page
         </Text>
       </View>
-      
+
+      <View>
+        <JobApplications/>
+      </View>
+
       <View style={{flex:3}}>
       <Image
         style={styles.image}
