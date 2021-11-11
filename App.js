@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View, Button,Image,TextInput } from 'react-native';
 import { event } from 'react-native-reanimated';
 import JobApplications from './components/JobApplications';
+import JobApp from './components/JobApp';
 
 const coding_url="https://blog.acromedia.com/hubfs/Blog%20Images/%28Acro%20Blog%29%20Coding%20Standards%20and%20Development%20-%201.0%20-%20mh.jpg"
 const mind_url='https://www.thecoderschool.com/blog/wp-content/uploads/2019/01/CodingMakesYouSmarter.jpg'
@@ -14,7 +15,7 @@ export default function App() {
     <View style={styles.container}>
       
       <View style={{flex:3}}>
-         <MyStack></MyStack>
+         <JobApp/>
       </View>
       
     </View>

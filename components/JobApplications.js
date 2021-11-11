@@ -2,9 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState,useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, FlatList,View, Button, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, FlatList,View, Button, Image, TextInput,ScrollView } from 'react-native';
 import { event } from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { ScrollView } from 'react-native-gesture-handler';
 
 export default function JobApplications() {
     const [num, setNum] = useState(1);
@@ -100,7 +101,7 @@ export default function JobApplications() {
 
     // here is where we render the app
     return (
-
+       <ScrollView>
         <View style={styles.container}>
             <Text style={styles.headerText}>Job Applications</Text>
             <Text style={{ fontSize: 25 }}>
@@ -192,6 +193,7 @@ export default function JobApplications() {
             {debug ? debugView : <Text></Text>}
 
         </View>
+        </ScrollView>
 
     );
 
