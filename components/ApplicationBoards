@@ -63,7 +63,7 @@ const ApplicationBoards = () => {
 
   return (
     <ScrollView style={{flex:1}}>
-
+      
       <View style={styles.input}>
         <Text style={{marginRight:10}}>Bboard</Text>
         <TextInput

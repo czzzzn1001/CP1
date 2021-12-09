@@ -34,7 +34,6 @@ const Registration = () => {
 
     const getUserData = async () => {
       let email = currentValue.email
-      let secret = currentValue.secret
       const appURL = currentValue.appURL
       // this function gets the userKey from asyncStorage if it is there
       // if not, it goes to the appURL to get a userKey which it stores in asyncStorage

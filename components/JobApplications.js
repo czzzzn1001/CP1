@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, FlatList,View, Button, Image, TextInput,ScrollView } from 'react-native';
+import { StyleSheet, Text, FlatList, View, Button, Image, TextInput, ScrollView } from 'react-native';
 import { event } from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { ScrollView } from 'react-native-gesture-handler';
@@ -13,8 +13,8 @@ export default function JobApplications() {
     const [link, setLink] = useState("");
     const [applications, setApplications] = useState([]);
 
-    useEffect(() => {getData()}
-           ,[])
+    useEffect(() => { getData() }
+        , [])
 
     const getData = async () => {
         try {
@@ -76,7 +76,7 @@ export default function JobApplications() {
         )
     }
 
-    let debug = true
+    let debug = false
     const debugView =
         (<View>
             <Text style={styles.headerText}>
@@ -101,98 +101,105 @@ export default function JobApplications() {
 
     // here is where we render the app
     return (
-       <ScrollView>
-        <View style={styles.container}>
-            <Text style={styles.headerText}>Job Applications</Text>
-            <Text style={{ fontSize: 25 }}>
-                Enter the info for your job applications below
-            </Text>
-
-            <View style={{
-                flexDirection: 'row',
-                margin: 20,
-                justifyContent: 'space-around'
-            }}>
-                <TextInput // for the date/time
-                    style={{ fontSize: 30 }}
-                    placeholder="Company"
-                    onChangeText={text => {
-                        setCompany(text);
-                    }}
-                    value={company}
-                />
-
-                <TextInput // for the goal
-                    style={{ fontSize: 30 }}
-                    placeholder="Link"
-                    onChangeText={text => {
-                        setLink(text);
-                    }}
-                    value={link}
-                />
-
-            </View>
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around'
-            }}>
-                <Button
-                    title={"Record"}
-                    color="blue"
-                    onPress={() => {
-                        const newApplication =
-                            applications.concat(
-                                {   'num':num,
-                                    'company': company,
-                                    'link': link,
-                                    'applied': new Date()
-                                })
-                        setApplications(newApplication)
-                        storeData(newApplication)
-                        setCompany("")
-                        setLink("")
-                        setNum(num + 1);
+        <ScrollView>
+            <View style={styles.container}>
+                <Image
+                    style={styles.picture}
+                    source={{
+                        uri: "https://cdn.aarp.net/content/dam/aarp/work/job-search/2020/08/1140-new-job-keyboard.jpg"
                     }}
                 />
-                <Button
-                    title={"Clear"}
-                    color="red"
-                    onPress={() => {
-                        clearAll()
-                        setApplications([])
-                    }}
-                />
-
-            </View>
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                backgroundColor: 'lightgray'
-            }}>
-                <Text style={{
-                    fontSize: 20,
-                    color: 'green', backgroundColor: 'lightgray'
-                }}>
-                    History of Applications
+                <Text style={styles.headerText}>Job Applications</Text>
+                <Text style={{ fontSize: 25 }}>
+                    Enter the info for your job applications below
                 </Text>
+
+                <View style={{
+                    flexDirection: 'row',
+                    margin: 20,
+                    justifyContent: 'space-around'
+                }}>
+                    <TextInput // for the date/time
+                        style={{ fontSize: 30 }}
+                        placeholder="Company"
+                        onChangeText={text => {
+                            setCompany(text);
+                        }}
+                        value={company}
+                    />
+
+                    <TextInput // for the goal
+                        style={{ fontSize: 30 }}
+                        placeholder="Link"
+                        onChangeText={text => {
+                            setLink(text);
+                        }}
+                        value={link}
+                    />
+
+                </View>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-around'
+                }}>
+                    <Button
+                        title={"Record"}
+                        color="blue"
+                        onPress={() => {
+                            const newApplication =
+                                applications.concat(
+                                    {
+                                        'num': num,
+                                        'company': company,
+                                        'link': link,
+                                        'applied': new Date()
+                                    })
+                            setApplications(newApplication)
+                            storeData(newApplication)
+                            setCompany("")
+                            setLink("")
+                            setNum(num + 1);
+                        }}
+                    />
+                    <Button
+                        title={"Clear"}
+                        color="red"
+                        onPress={() => {
+                            clearAll()
+                            setApplications([])
+                        }}
+                    />
+
+                </View>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    backgroundColor: 'lightgray'
+                }}>
+                    <Text style={{
+                        fontSize: 20,
+                        color: 'green', backgroundColor: 'lightgray'
+                    }}>
+                        History of Applications
+                    </Text>
+                </View>
+
+                <View style={styles.application}>
+                    <Text>Number</Text>
+                    <Text>Company</Text>
+                    <Text>Link</Text>
+                </View>
+
+
+                <FlatList
+                    data={applications.reverse()}
+                    renderItem={renderApplication}
+                    keyExtractor={item => item.num}
+                />
+
+                {debug ? debugView : <Text></Text>}
+
             </View>
-
-            <View style={styles.application}>
-              <Text>Number</Text>
-              <Text>Company</Text>
-              <Text>Link</Text>
-            </View>
-
-
-            <FlatList
-                data={applications.reverse()}
-                renderItem={renderApplication}
-                keyExtractor={item => item.num}
-            />
-
-            {debug ? debugView : <Text></Text>}
-
-        </View>
         </ScrollView>
 
     );
@@ -221,6 +228,10 @@ const styles = StyleSheet.create({
         fontSize: 32,
         padding: 10,
         color: 'blue'
+    },
+    picture: {
+        width: 500,
+        height: 200,
     },
 
 });

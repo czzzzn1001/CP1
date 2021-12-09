@@ -9,7 +9,7 @@ export default function Profile() {
     <View style={{flex:1,padding:10,margin:10,backgroundColor:"#ddd "}}>
         <Text style={{fontSize:20}}>Username:{currentValue.name}</Text>
         <Text style={{fontSize:20}}>Email:{currentValue.email}</Text>
-        <Text style={{fontSize:20}}>AppURL:{currentValue.appURL}</Text>
+        {/* <Text style={{fontSize:20}}>AppURL:{currentValue.appURL}</Text> */}
         {/* <Text style={{fontSize:20}}>Secret:{currentValue.secret}</Text> */}
     </View>
   )

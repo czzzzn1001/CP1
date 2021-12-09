@@ -26,9 +26,9 @@ const App = () => {
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen name="Home" component= {Home} />
-          <Tab.Screen name="Profile" component= {Profile} />
           <Tab.Screen name="JobApplications" component= {JobApplications} />
           <Tab.Screen name="Register" component= {Registration} />
+          <Tab.Screen name="Profile" component= {Profile} />
         </Tab.Navigator>
       </NavigationContainer>
     </ValueProvider>
