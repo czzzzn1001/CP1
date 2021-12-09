@@ -102,6 +102,7 @@ export default function JobApplications() {
     // here is where we render the app
     return (
         <ScrollView>
+            
             <View style={styles.container}>
                 <Image
                     style={styles.picture}
